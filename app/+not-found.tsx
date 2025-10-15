@@ -4,15 +4,14 @@ import { Text } from '@/components/ui/text';
 
 export default function NotFoundScreen() {
   return (
-    <>
-      <Stack.Screen options={{ title: 'Oops!' }} />
-      <View>
-        <Text>This screen doesn't exist.</Text>
+    <View className="flex-1 items-center justify-center gap-4 bg-black/80">
+      <Stack.Screen options={{ title: 'Oops! Not Found' }} />
 
-        <Link href="/">
-          <Text>Go to home screen!</Text>
-        </Link>
-      </View>
-    </>
+      <Text className="text-white">This screen doesn't exist.</Text>
+
+      <Link href="/" className="rounded-xl bg-white p-4 text-[20px] font-bold">
+        <Text>Go to home screen!</Text>
+      </Link>
+    </View>
   );
 }

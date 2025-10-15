@@ -8,18 +8,11 @@ export default function TabLayout() {
         tabBarActiveTintColor: "#ffd33d",
         headerStyle: {
           backgroundColor: "#25292e",
-          marginTop: 40,
         },
         headerShadowVisible: true,
         headerTintColor: "#fff",
         tabBarStyle: {
           backgroundColor: "#25292e",
-          flex: 1,
-          justifyContent: "center",
-          alignItems: "center",
-          paddingTop: 10,
-          height: 80,
-          maxHeight: 80,
         },
       }}
     >

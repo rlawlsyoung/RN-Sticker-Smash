@@ -33,7 +33,7 @@ export default function Screen() {
         <Image source={LOGO[colorScheme ?? 'light']} style={IMAGE_STYLE} resizeMode="contain" />
         <View className="gap-2 p-4">
           <Text className="ios:text-foreground font-mono text-sm text-muted-foreground">
-            1. Edit <Text variant="code">app/index.tsx</Text> to get started.
+            1. Editdsd sdd<Text variant="code">app/index.tsx</Text> to get started.
           </Text>
           <Text className="ios:text-foreground font-mono text-sm text-muted-foreground">
             2. Save to see your changes instantly.
@@ -42,7 +42,7 @@ export default function Screen() {
         <View className="flex-row gap-2">
           <Link href="https://reactnativereusables.com" asChild>
             <Button>
-              <Text>Browse the Docs</Text>
+              <Text>Browse the Docss</Text>
             </Button>
           </Link>
           <Link href="https://github.com/founded-labs/react-native-reusables" asChild>

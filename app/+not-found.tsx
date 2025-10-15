@@ -1,11 +1,11 @@
-import { Link, Stack } from 'expo-router';
-import { View } from 'react-native';
-import { Text } from '@/components/ui/text';
+import { Link, Stack } from "expo-router";
+import { View } from "react-native";
+import { Text } from "@/components/ui/text";
 
 export default function NotFoundScreen() {
   return (
-    <View className="flex-1 items-center justify-center gap-4 bg-black/80">
-      <Stack.Screen options={{ title: 'Oops! Not Found' }} />
+    <View className="flex-1 items-center justify-center gap-4 bg-[#25292e]">
+      <Stack.Screen options={{ title: "Oops! Not Found" }} />
 
       <Text className="text-white">This screen doesn't exist.</Text>
 

@@ -52,7 +52,7 @@ export default function Index() {
 
   return (
     <GestureHandlerRootView className="flex-1 items-center bg-[#25292e] gap-8">
-      <View className="mt-7">
+      <View className="mt-7 overflow-hidden rounded-[18px] h-[440px] w-[320px]">
         <ImageViewer imgSource={PlaceholderImage} selectedImage={selectedImage} />
         {pickedEmoji && <EmojiSticker stickerSource={pickedEmoji} imageSize={60} />}
       </View>
@@ -64,7 +64,7 @@ export default function Index() {
           <IconButton icon="save-alt" label="Save" onPress={onSaveImageAsync} />
         </View>
       ) : (
-        <View className="w-full items-center gap-4">
+        <View className="w-full items-center gap-4 absolute bottom-[20px]">
           <Button label="Choose a photo" theme="primary" onPress={pickImageAsync} />
           <Button label="Use this photo" onPress={() => setShowAppOptions(true)} />
         </View>

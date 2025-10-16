@@ -1,15 +1,56 @@
 import { ImageSourcePropType, View } from "react-native";
-import { Image } from "expo-image";
+import { Gesture, GestureDetector } from "react-native-gesture-handler";
+import Animated, { useAnimatedStyle, useSharedValue, withSpring } from "react-native-reanimated";
 
 type Props = {
-  className?: string;
+  imageSize: number;
   stickerSource: ImageSourcePropType;
 };
 
-export default function EmojiSticker({ className, stickerSource }: Props) {
+export default function EmojiSticker({ imageSize, stickerSource }: Props) {
+  // useSharedValue는 useState와 같지만, 값 변경에 따라 렌더링이 실행되지 않음
+  const translateX = useSharedValue(0);
+  const translateY = useSharedValue(0);
+  const scaleImage = useSharedValue(imageSize);
+
+  const doubleTap = Gesture.Tap()
+    .numberOfTaps(2)
+    .onStart(() => {
+      if (scaleImage.value !== imageSize * 2) {
+        scaleImage.value = scaleImage.value * 2;
+      } else {
+        scaleImage.value = Math.round(scaleImage.value / 2);
+      }
+    });
+
+  const imageStyle = useAnimatedStyle(() => {
+    return {
+      width: withSpring(scaleImage.value),
+      height: withSpring(scaleImage.value),
+    };
+  });
+
+  const drag = Gesture.Pan().onChange((event) => {
+    translateX.value += event.changeX;
+    translateY.value += event.changeY;
+  });
+
+  const containerStyle = useAnimatedStyle(() => {
+    return {
+      transform: [
+        { translateX: withSpring(translateX.value) },
+        { translateY: withSpring(translateY.value) },
+      ],
+    };
+  });
+
   return (
-    <View className="top-[-350px]">
-      <Image source={stickerSource} className={className} />
-    </View>
+    <GestureDetector gesture={drag}>
+      <Animated.View className="top-[-350px]" style={containerStyle}>
+        <GestureDetector gesture={doubleTap}>
+          <Animated.Image source={stickerSource} resizeMode="contain" style={imageStyle} />
+        </GestureDetector>
+      </Animated.View>
+    </GestureDetector>
   );
 }

@@ -1,4 +1,4 @@
-import { ImageSourcePropType, Text, View } from "react-native";
+import { ImageSourcePropType, View } from "react-native";
 import ImageViewer from "@/components/ImageViewer";
 import Button from "@/components/Button";
 import * as ImagePicker from "expo-image-picker";
@@ -8,6 +8,10 @@ import CircleButton from "@/components/CircleButton";
 import EmojiPicker from "@/components/EmojiPicker";
 import EmojiList from "@/components/EmojiList";
 import EmojiSticker from "@/components/EmojiSticker";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { cssInterop } from "nativewind";
+
+cssInterop(GestureHandlerRootView, { className: "style" });
 
 const PlaceholderImage = require("@/assets/images/background-image.png");
 
@@ -47,10 +51,10 @@ export default function Index() {
   const onSaveImageAsync = async () => {};
 
   return (
-    <View className="flex-1 items-center bg-[#25292e] gap-8">
+    <GestureHandlerRootView className="flex-1 items-center bg-[#25292e] gap-8">
       <View className="mt-7">
         <ImageViewer imgSource={PlaceholderImage} selectedImage={selectedImage} />
-        {pickedEmoji && <EmojiSticker stickerSource={pickedEmoji} className="size-[100px]" />}
+        {pickedEmoji && <EmojiSticker stickerSource={pickedEmoji} imageSize={60} />}
       </View>
 
       {showAppOptions ? (
@@ -69,6 +73,6 @@ export default function Index() {
       <EmojiPicker isVisible={isModalVisible} onClose={onModalClose}>
         <EmojiList onSelect={setPickedEmoji} onCloseModal={onModalClose} />
       </EmojiPicker>
-    </View>
+    </GestureHandlerRootView>
   );
 }

@@ -4,7 +4,7 @@
 
 ## 📱 소개
 
-**Sticker Smash**는 Expo[Expo](https://expo.dev/) Docs에 있는 튜토리얼 프로젝트입니다.사용자가 선택한 사진에 다양한 이모지 스티커를 추가하고, 드래그, 크기 조절 등의 인터랙션을 통해 재미있는 이미지를 만들 수 있습니다.
+**Sticker Smash**는 [Expo](https://expo.dev/) Docs에 있는 튜토리얼을 변형시킨 프로젝트입니다. 개인적으로 선호하는 스택인 Tailwind & shadcn/ui의 RN버전인 nativewind & ReactNativeReusables를 사용하여 조금 변형하여 진행해보았습니다. 사용자가 선택한 사진에 다양한 이모지 스티커를 추가하고, 드래그, 크기 조절 등의 인터랙션을 통해 재미있는 이미지를 만들 수 있습니다.
 
 ### ✨ 주요 기능
 

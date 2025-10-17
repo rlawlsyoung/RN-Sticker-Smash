@@ -1,25 +1,37 @@
 import { ImageSourcePropType, View } from "react-native";
+import * as ImagePicker from "expo-image-picker";
+import { useEffect, useRef, useState } from "react";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { cssInterop } from "nativewind";
+import * as MediaLibrary from "expo-media-library";
+import { captureRef } from "react-native-view-shot";
+
 import ImageViewer from "@/components/ImageViewer";
 import Button from "@/components/Button";
-import * as ImagePicker from "expo-image-picker";
-import { useState } from "react";
 import IconButton from "@/components/ui/IconButton";
 import CircleButton from "@/components/CircleButton";
 import EmojiPicker from "@/components/EmojiPicker";
 import EmojiList from "@/components/EmojiList";
 import EmojiSticker from "@/components/EmojiSticker";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { cssInterop } from "nativewind";
 
 cssInterop(GestureHandlerRootView, { className: "style" });
 
 const PlaceholderImage = require("@/assets/images/background-image.png");
 
 export default function Index() {
+  const imageRef = useRef<View>(null);
+
+  const [permissionResponse, requestPermission] = MediaLibrary.usePermissions();
   const [selectedImage, setSelectedImage] = useState<string | undefined>(undefined);
   const [showAppOptions, setShowAppOptions] = useState<boolean>(false);
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
   const [pickedEmoji, setPickedEmoji] = useState<ImageSourcePropType | undefined>(undefined);
+
+  useEffect(() => {
+    if (!permissionResponse?.granted) {
+      requestPermission();
+    }
+  }, []);
 
   const pickImageAsync = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -38,6 +50,7 @@ export default function Index() {
 
   const onReset = () => {
     setShowAppOptions(false);
+    setPickedEmoji(undefined);
   };
 
   const onAddSticker = () => {
@@ -48,11 +61,29 @@ export default function Index() {
     setIsModalVisible(false);
   };
 
-  const onSaveImageAsync = async () => {};
+  const onSaveImageAsync = async () => {
+    try {
+      const localUri = await captureRef(imageRef, {
+        height: 440,
+        quality: 1,
+      });
+
+      await MediaLibrary.saveToLibraryAsync(localUri);
+      if (localUri) {
+        alert("Saved!");
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return (
     <GestureHandlerRootView className="flex-1 items-center bg-[#25292e] gap-8">
-      <View className="mt-7 overflow-hidden rounded-[18px] h-[440px] w-[320px]">
+      <View
+        ref={imageRef}
+        collapsable={false}
+        className="mt-7 overflow-hidden rounded-[18px] h-[440px] w-[320px]"
+      >
         <ImageViewer imgSource={PlaceholderImage} selectedImage={selectedImage} />
         {pickedEmoji && <EmojiSticker stickerSource={pickedEmoji} imageSize={60} />}
       </View>

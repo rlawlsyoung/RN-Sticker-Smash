@@ -191,61 +191,6 @@ npx @react-native-reusables/cli@latest add input textarea switch
 
 컴포넌트명을 지정하지 않으면 대화형으로 선택할 수 있으며, `--all` 플래그를 사용하면 모든 컴포넌트를 한 번에 설치할 수 있습니다.
 
-## 📦 빌드 및 배포
-
-### EAS Build로 앱 빌드
-
-[Expo Application Services (EAS)](https://expo.dev/eas)를 사용하여 앱을 쉽게 빌드하고 배포할 수 있습니다.
-
-1. **EAS CLI 설치**
-
-```bash
-npm install -g eas-cli
-```
-
-2. **EAS 로그인**
-
-```bash
-eas login
-```
-
-3. **프로젝트 설정**
-
-```bash
-eas build:configure
-```
-
-4. **빌드 실행**
-
-```bash
-# iOS 빌드
-eas build --platform ios
-
-# Android 빌드
-eas build --platform android
-
-# 모든 플랫폼 빌드
-eas build --platform all
-```
-
-### 더 알아보기
-
-- [EAS Build 가이드](https://docs.expo.dev/build/introduction/)
-- [EAS Update](https://docs.expo.dev/eas-update/introduction/)
-- [EAS Submit](https://docs.expo.dev/submit/introduction/)
-
-## 📚 학습 리소스
-
-프로젝트에서 사용된 기술에 대해 더 알아보기:
-
-- [React Native 문서](https://reactnative.dev/docs/getting-started)
-- [Expo 문서](https://docs.expo.dev/)
-- [Expo Router 가이드](https://expo.dev/router)
-- [NativeWind 문서](https://www.nativewind.dev/)
-- [React Native Reusables](https://reactnativereusables.com)
-- [React Native Reanimated](https://docs.swmansion.com/react-native-reanimated/)
-- [React Native Gesture Handler](https://docs.swmansion.com/react-native-gesture-handler/)
-
 ## 🤝 기여하기
 
 이 프로젝트는 학습 및 실험 목적으로 만들어졌습니다. 이슈나 풀 리퀘스트를 통해 자유롭게 개선 사항을 제안해주세요!
@@ -253,7 +198,3 @@ eas build --platform all
 ## 📄 라이선스
 
 이 프로젝트는 개인 학습용 프로젝트입니다.
-
----
-
-⭐ 이 프로젝트가 도움이 되셨다면 스타를 눌러주세요!

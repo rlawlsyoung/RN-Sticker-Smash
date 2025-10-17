@@ -14,12 +14,14 @@ import CircleButton from "@/components/CircleButton";
 import EmojiPicker from "@/components/EmojiPicker";
 import EmojiList from "@/components/EmojiList";
 import EmojiSticker from "@/components/EmojiSticker";
+import { useTranslation } from "@/lib/i18n";
 
 cssInterop(GestureHandlerRootView, { className: "style" });
 
 const PlaceholderImage = require("@/assets/images/background-image.png");
 
 export default function Index() {
+  const { t } = useTranslation();
   const imageRef = useRef<View>(null);
 
   const [permissionResponse, requestPermission] = MediaLibrary.usePermissions();
@@ -45,7 +47,7 @@ export default function Index() {
       setSelectedImage(result.assets[0].uri);
       setShowAppOptions(true);
     } else {
-      alert("You did not select any image.");
+      alert(t("home.noImageSelected"));
     }
   };
 
@@ -72,7 +74,7 @@ export default function Index() {
 
         await MediaLibrary.saveToLibraryAsync(localUri);
         if (localUri) {
-          alert("Saved!");
+          alert(t("home.savedSuccess"));
         }
       } catch (e) {
         console.log(e);
@@ -108,14 +110,14 @@ export default function Index() {
 
       {showAppOptions ? (
         <View className="absolute bottom-[80px] items-center flex-row gap-[60px]">
-          <IconButton icon="refresh" label="Reset" onPress={onReset} />
+          <IconButton icon="refresh" label={t("common.reset")} onPress={onReset} />
           <CircleButton onPress={onAddSticker} />
-          <IconButton icon="save-alt" label="Save" onPress={onSaveImageAsync} />
+          <IconButton icon="save-alt" label={t("common.save")} onPress={onSaveImageAsync} />
         </View>
       ) : (
         <View className="w-full items-center gap-4 absolute bottom-[20px]">
-          <Button label="Choose a photo" theme="primary" onPress={pickImageAsync} />
-          <Button label="Use this photo" onPress={() => setShowAppOptions(true)} />
+          <Button label={t("home.choosePhoto")} theme="primary" onPress={pickImageAsync} />
+          <Button label={t("home.useThisPhoto")} onPress={() => setShowAppOptions(true)} />
         </View>
       )}
 
